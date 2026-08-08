@@ -1,0 +1,7 @@
+{
+  "playwright.configs": [
+    "playwright.config.ts"
+  ],
+  "playwright.reuseBrowser": true,
+  "playwright.showTrace": true
+}
