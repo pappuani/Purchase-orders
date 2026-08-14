@@ -1,6 +1,6 @@
-# 🍽️ Cafe QR POS - Product Management E2E Automation Suite
+# 🍽️ Cafe QR POS - E2E Automation Suite (Product & Purchase Management)
 
-A robust end-to-end (E2E) automated testing framework built with **Playwright** and **TypeScript** using the **Page Object Model (POM)** pattern to verify the critical path workflows of the Cafe QR Point of Sale (POS) and Product Management application.
+A robust end-to-end (E2E) automated testing framework built with **Playwright** and **TypeScript** using the **Page Object Model (POM)** pattern to verify the critical path workflows of the Cafe QR Point of Sale (POS), Product Management, and Purchase Orders application.
 
 ---
 
@@ -17,6 +17,16 @@ A robust end-to-end (E2E) automated testing framework built with **Playwright** 
 8. **Variants Management**: Creates global variant groups (e.g., `Size: Regular, Medium, Large`) and validates them in the variant registry.
 9. **Product Availability Toggle**: Verifies toggling active/available status switch on catalog items.
 
+### 🧾 Purchase Orders Module (`tests/purchase-orders.spec.ts`)
+1. **UI Layout & Field Validation**: Verifies vendor, warehouse, order date, notes, custom "Mark as Received" toggle, and all action buttons (Complete, Draft, Clear) are correctly rendered.
+2. **Dynamic Calculations**: Validates live calculations for Subtotal, Tax %, and Grand Total when adding items.
+3. **Item Management**: Tests adding and deleting items from the purchase order table.
+4. **Draft PO Flow**: Automates saving purchase orders as draft and verifying their presence in the drafts list.
+5. **Complete Purchase Order**: Runs the end-to-end checkout flow for completing a purchase order with payment confirmation.
+6. **PO History & Search Filters**: Verifies navigation to the historical purchase records table and tests various filter options (Status, Vendor, Warehouse).
+7. **PO Details Breakdown**: Tests viewing itemized breakdowns of historical purchase orders in a detailed modal view.
+8. **Void PO Flow**: Tests voiding a received purchase order and confirming status updates.
+
 ---
 
 ## 🛠️ Technology Stack & Architecture
@@ -25,6 +35,7 @@ A robust end-to-end (E2E) automated testing framework built with **Playwright** 
 - **Design Pattern**: Page Object Model (POM)
   - `pages/LoginPage.ts` — Authentication & session handling
   - `pages/ProductPage.ts` — Product, Category, UOM, Variant, Ingredient & Recipe methods
+  - `pages/PurchaseOrderPage.ts` — Purchase order creation, draft, history, and void actions
 - **Artifacts**: Automatic screenshots, video recordings, and trace logs on test execution.
 
 ---
@@ -39,7 +50,12 @@ Open the folder `pos-playwright-automation` in VS Code or your terminal.
 npx playwright test tests/product-management.spec.ts
 ```
 
-### 3. Run All Test Suites
+### 3. Run Purchase Orders Suite
+```bash
+npx playwright test tests/purchase-orders.spec.ts
+```
+
+### 4. Run All Test Suites
 ```bash
 npx playwright test
 ```
