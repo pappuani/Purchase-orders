@@ -138,14 +138,14 @@ export class PurchaseOrderPage {
     this.draftsButton = page.getByRole('button', { name: /Draft/i }).first();
 
     // Payment Modal
-    this.paymentModal = page.locator('div[role="dialog"]').filter({ hasText: 'Confirm' }).last();
+    this.paymentModal = page.locator('div').filter({ has: page.locator('h2:has-text("Confirm Purchase")') }).last();
     this.cashPaymentButton = page.getByRole('button', { name: /^Cash$/i }).first();
     this.onlinePaymentButton = page.getByRole('button', { name: /^Online$/i }).first();
     this.confirmPurchaseButton = page.getByRole('button', { name: /Confirm Purchase|Confirm/i }).last();
     this.cancelPaymentButton = page.getByRole('button', { name: /Cancel|Close/i }).first();
 
     // Drafts Drawer
-    this.draftsDrawer = page.locator('div[role="dialog"]').filter({ hasText: 'Draft' }).first();
+    this.draftsDrawer = page.locator('div').filter({ has: page.locator('h2:has-text("Draft")') }).last();
     this.draftItems = page.locator('div:has-text("PO-")');
     this.closeDraftsButton = page.getByRole('button', { name: /Close/i }).first();
 
@@ -158,9 +158,9 @@ export class PurchaseOrderPage {
     this.historyRows = page.locator('table tbody tr');
 
     // PO Details & Void
-    this.poDetailsModal = page.locator('div[role="dialog"]').filter({ hasText: 'PO-' }).first();
+    this.poDetailsModal = page.locator('div').filter({ has: page.locator('h2:has-text("PO-")') }).last();
     this.closeDetailsButton = page.getByRole('button', { name: /Close|✕/i }).first();
-    this.voidConfirmDialog = page.locator('div[role="dialog"]').filter({ hasText: 'Void' }).first();
+    this.voidConfirmDialog = page.locator('div').filter({ has: page.locator('h2:has-text("Void")') }).last();
     this.confirmVoidButton = page.getByRole('button', { name: /Confirm Void|Void PO|Yes, Void/i }).last();
     this.cancelVoidButton = page.getByRole('button', { name: /Cancel|No/i }).first();
   }
@@ -326,7 +326,7 @@ export class PurchaseOrderPage {
     await this.page.waitForTimeout(1000);
 
     // Wait for the payment/confirm modal to appear
-    const modal = this.page.locator('div[role="dialog"]').last();
+    const modal = this.paymentModal;
     try {
       await modal.waitFor({ state: 'visible', timeout: 5000 });
     } catch {

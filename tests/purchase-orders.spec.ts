@@ -185,7 +185,14 @@ test.describe('Cafe QR POS - Purchase Orders E2E Automation Suite', () => {
       await page.waitForTimeout(2000);
       // Verify PO History page loaded (heading visible)
       const heading = page.locator('text=PO History').first();
-      const isLoaded = await heading.isVisible({ timeout: 5000 }).catch(() => false);
+      await expect(heading).toBeVisible({ timeout: 8000 });
+
+      // Verify created PO exists in the list
+      const firstRow = page.locator('table tbody tr').first();
+      await expect(firstRow).toBeVisible({ timeout: 8000 });
+      const vendorCell = firstRow.locator('td').nth(3); // 4th column (index 3) is VENDOR
+      await expect(vendorCell).toHaveText('COM');
+
       // Take screenshot regardless
       await page.screenshot({ path: 'test-results/po-created-in-history.png' });
     });
@@ -251,7 +258,7 @@ test.describe('Cafe QR POS - Purchase Orders E2E Automation Suite', () => {
     });
 
     await test.step('Verify PO details modal appeared or details shown', async () => {
-      const modal = page.locator('div[role="dialog"]').first();
+      const modal = poPage.poDetailsModal;
       const isModalVisible = await modal.isVisible({ timeout: 5000 }).catch(() => false);
       // Either modal or expanded row view
       await page.screenshot({ path: 'test-results/po-details-modal.png' });
