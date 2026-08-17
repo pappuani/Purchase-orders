@@ -21,8 +21,21 @@
   "author": "pappuani <pappuani8@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.44.0",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pappuani/Purchase-orders.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pappuani/Purchase-orders/issues"
+  },
+  "homepage": "https://github.com/pappuani/Purchase-orders#readme"
 }
